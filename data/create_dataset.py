@@ -1,0 +1,43 @@
+# creates synthetic dataset
+
+import json
+from pathlib import Path
+
+sample_data = [
+    {
+        "title": "Health effects of microplastic ingestion",
+        "abstract": "Microplastic ingestion has been linked to inflammation and oxidative stress in animal models, raising concerns for human health via gut microbiome disruption.",
+        "source": "PubMed",
+        "date": "2023-04-12"
+    },
+    {
+        "title": "Wildfire smoke and respiratory health",
+        "abstract": "Exposure to wildfire smoke is associated with increased hospital admissions for asthma, bronchitis, and cardiovascular issues, particularly in vulnerable populations.",
+        "source": "PubMed",
+        "date": "2022-11-05"
+    },
+    {
+        "title": "Climate change and vector-borne diseases",
+        "abstract": "Rising temperatures and changing precipitation patterns contribute to expanded ranges of disease-carrying vectors such as mosquitoes, affecting public health worldwide.",
+        "source": "PubMed",
+        "date": "2023-01-22"
+    },
+    {
+        "title": "Air pollution and cognitive development in children",
+        "abstract": "Chronic exposure to traffic-related air pollution is associated with decreased cognitive function and increased behavioral disorders in children.",
+        "source": "PubMed",
+        "date": "2021-09-14"
+    },
+    {
+        "title": "Per- and polyfluoroalkyl substances (PFAS) exposure",
+        "abstract": "PFAS are persistent environmental contaminants linked to thyroid dysfunction, liver damage, and immune suppression, with mounting regulatory pressure to reduce exposure.",
+        "source": "PubMed",
+        "date": "2023-02-10"
+    }
+]
+
+Path("data").mkdir(exist_ok=True)
+with open("data/env_health_abstracts.json", "w") as f:
+    json.dump(sample_data, f, indent=2)
+
+print("✅ Sample dataset saved to data/env_health_abstracts.json")

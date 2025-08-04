@@ -1,0 +1,7 @@
+__pycache__/
+.env/
+*.pyc
+*.pkl
+*.faiss
+*.ipynb_checkpoints/
+faiss_store/
