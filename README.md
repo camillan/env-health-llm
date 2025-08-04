@@ -4,7 +4,7 @@ A lightweight, end-to-end NLP application for question answering over a corpus o
 
 ---
 
-## 🧬 Project Summary
+## Project Summary
 
 This project answers user questions about environmental health topics (e.g., wildfire smoke, air pollution, climate change) by:
 
@@ -16,7 +16,7 @@ All components are lightweight and designed to run on a local machine (MacBook A
 
 ---
 
-## 🛠️ Architecture
+## Architecture
 
 **1. Data Processing**
 
@@ -28,14 +28,15 @@ All components are lightweight and designed to run on a local machine (MacBook A
 * Embeddings generated using: `sentence-transformers/all-MiniLM-L6-v2`
 * Indexed with FAISS: `IndexFlatL2`
 
-**3. Retrieval**
+**3. Retrieval (RAG-style)**
 
-* Top-K relevant documents retrieved via cosine similarity
+* Top-K relevant documents retrieved via vector similarity (semantic search)
+* Used as context for the generation step
 
 **4. Question Answering**
 
 * Contextual answers generated via Hugging Face Inference API
-* Current model: `facebook/bart-large-cnn` (text2text-generation)
+* Current model: `deepset/roberta-base-squad2` (text2text-generation)
 
 ---
 
@@ -61,7 +62,7 @@ All components are lightweight and designed to run on a local machine (MacBook A
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```bash
 .
@@ -78,7 +79,7 @@ All components are lightweight and designed to run on a local machine (MacBook A
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
 ```bash
 # Create conda env
@@ -129,7 +130,7 @@ I built this project to:
 ## Author
 
 **Camilla Nawaz**
-Machine Learning Engineer | Data Scientist | Machine Learning & AI Engineering
+Data Scientist | MLE & AI Engineering
 
 [GitHub](https://github.com/camillan) • [LinkedIn](https://linkedin.com/in/camillanawaz)
 
