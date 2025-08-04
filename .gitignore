@@ -5,3 +5,4 @@ __pycache__/
 *.faiss
 *.ipynb_checkpoints/
 faiss_store/
+.env
