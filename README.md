@@ -36,7 +36,12 @@ All components are lightweight and designed to run on a local machine (MacBook A
 **4. Question Answering**
 
 * Contextual answers generated via Hugging Face Inference API
-* Current model: `deepset/roberta-base-squad2` (text2text-generation)
+* Current model: `deepset/roberta-base-squad2` (question-answering)
+
+**5. FastAPI Interface**
+
+* Serve the QA pipeline via an HTTP API at `/ask`
+* Swagger UI available at `/docs`
 
 ---
 
@@ -45,6 +50,7 @@ All components are lightweight and designed to run on a local machine (MacBook A
 * **RAG-style Pipeline:** Retrieval-augmented generation architecture
 * **LLM-as-a-Service:** Uses Hugging Face Inference API for LLMs (no need to fine-tune or host)
 * **Scalable Indexing:** FAISS for fast nearest-neighbor search
+* **FastAPI Web Interface** to expose the system over HTTP
 * **Simple CLI Interface** for interactive use
 * **Compatible with M1/M2 Macs and low-spec hardware**
 
@@ -62,24 +68,29 @@ All components are lightweight and designed to run on a local machine (MacBook A
 
 ---
 
-## Repository Structure
+## 📁 Repository Structure
 
 ```bash
 .
-├── data/                 # Source documents
-├── embeddings/           # FAISS index + metadata
-│   ├── build_index.py    # Create index
-│   └── search.py         # Run semantic search
+├── data/                   # Source documents
+├── embeddings/             # FAISS index + metadata
+│   ├── build_index.py      # Create index
+│   └── search.py           # Run semantic search
 ├── model/
 │   └── generate_answer.py  # Full QA pipeline
-├── hf_test.py            # Test HF API integration
-├── .env                  # Contains Hugging Face token (excluded from Git)
+├── app/
+│   └── main.py             # FastAPI application
+├── hf_test.py              # Test HF API integration
+├── .env                    # Contains Hugging Face token (excluded from Git)
+├── .gitignore              # Ensures .env and other files are excluded
 └── requirements.txt
 ```
 
 ---
 
 ## How to Run
+
+### CLI Mode
 
 ```bash
 # Create conda env
@@ -93,8 +104,18 @@ echo "HF_API_TOKEN=your_token_here" > .env
 # Step 1: Build embeddings
 python embeddings/build_index.py
 
-# Step 2: Ask questions
+# Step 2: Ask questions via CLI
 python -m model.generate_answer
+```
+
+### FastAPI Web Server
+
+```bash
+# Run the FastAPI app
+uvicorn app.main:app --reload
+
+# Access interactive docs
+http://127.0.0.1:8000/docs
 ```
 
 ---
@@ -111,18 +132,19 @@ I built this project to:
 
 ## Future Improvements
 
-* Swap out HF inference API for local model hosting with FastAPI
+* Swap out HF inference API for local model hosting
 * Add Streamlit or web UI
 * Expand corpus with PubMed + EPA data
 * Improve re-ranking of retrieved documents
+* Add logging, error handling, and batch processing
 
 ---
 
 ## Skills Demonstrated
 
-* NLP: Embeddings, transformers, summarization
+* NLP: Embeddings, transformers, QA pipelines
 * MLOps: Project structure, API usage, environment management
-* Deployment: Token-safe repo, CLI interface, minimal memory footprint
+* Deployment: FastAPI server, CLI + web
 * Domain interest: Climate + health
 
 ---
@@ -130,7 +152,7 @@ I built this project to:
 ## Author
 
 **Camilla Nawaz**
-Data Scientist | MLE & AI Engineering
+Machine Learning Engineer | Data Scientist | Climate + Health
 
 [GitHub](https://github.com/camillan) • [LinkedIn](https://linkedin.com/in/camillanawaz)
 
